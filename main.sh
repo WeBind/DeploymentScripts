@@ -4,7 +4,9 @@ PRODUCER_OUTER_JBI_TEMPLATE_GENERATOR="/opt/Plasson/petals/producer-outer-jbi-te
 CONSUMER_INNER_JBI_TEMPLATE_GENERATOR="/opt/Plasson/petals/consumer-inner-jbi-template-generator.sh"
 CONSUMER_OUTER_JBI_TEMPLATE_GENERATOR="/opt/Plasson/petals/consumer-outer-jbi-template-generator.sh"
 HOST="127.0.0.1"
-
+REMOTE_HOST="192.168.0.105"
+REMOTE_HOST_FOLDER="/root/petals-esb-enterprise-edition-5.0.0-SNAPSHOT/esb/petals-esb-default-zi
+p-5.0.1-SNAPSHOT/data/install/"
 PROD_NAME=producer-$1
 mkdir /tmp/webind-petals
 mkdir /tmp/webind-petals/$PROD_NAME
@@ -36,7 +38,7 @@ pushd $ROOT2
 zip -r $ROOT2.zip .
 popd
 mv $ROOT2/$ROOT2.zip .
-
+#scp $ROOT2/$ROOT2.zip root@$REMOTE_HOST:$REMOTE_HOST_FOLDER
 
 #consume
 ROOT=su-SOAP-SoapProviderService-consume
@@ -60,3 +62,4 @@ pushd $ROOT2
 zip -r $ROOT2.zip .
 popd
 mv $ROOT2/$ROOT2.zip .
+#scp $ROOT2/$ROOT2.zip root@$REMOTE_HOST:$REMOTE_HOST_FOLDER
