@@ -13,7 +13,7 @@ import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
 @WebService(serviceName = "provider-$NAME")
-public class SoapProvider {
+public class SoapProvider$NAME {
     @Resource
     private WebServiceContext svcCtx;
 
