@@ -19,7 +19,7 @@ cp -R $PROJECT_FOLDER ./producer-src-$id
 cd producer-src-$id/SoapJavaProducer
 pushd $JAVA_FOLDER
 	rm SoapProvider.java
-	${TEMPLATE_GENERATOR} $id > SoapProvider.java
+	${TEMPLATE_GENERATOR} $id > SoapProvider$NAME.java
 popd
 mvn install
 mv $INSTALLED_FOLDER /tmp/webind/producer-$id;
