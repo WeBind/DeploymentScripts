@@ -1,6 +1,7 @@
 #!/bin/bash
 BASE="producer-"
-GLASSFISH_INSTALL="/opt/glassfish4"
+
+GLASSFISH_INSTALL="/usr/local/glassfish4"
 GLASSFISH_ASADMIN="$GLASSFISH_INSTALL/bin/asadmin"
 DOMAIN_PATH="$GLASSFISH_INSTALL/glassfish/domains/domain1/applications/*"
 for cur in "$@"
