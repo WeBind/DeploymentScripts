@@ -1,8 +1,12 @@
 #!/bin/bash
-ADDRESS="example"
-INTERFACE_SOAP="SoapProvider"
-SERVICE_SOAP="SoapProviderService"
+NAME=$1
+PRODUCER_NAME=producer-$1
+PROVIDER_SOAP=provider-$1
 
+HOST=$2
+ADDRESS="example"
+SERVICE_SOAP=$NAME
+INTERFACE_SOAP=$PROVIDER_SOAP
 cat << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <jbi:jbi xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:$ADDRESS="http://$ADDRESS/" xmlns:cdk5="http://petals.ow2.org/components/extensions/version-5" xmlns:jbi="http://java.sun.com/xml/ns/jbi" xmlns:soap="http://petals.ow2.org/components/soap/version-4" version="1.0">

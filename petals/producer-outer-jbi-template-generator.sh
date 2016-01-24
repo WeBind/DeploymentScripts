@@ -1,6 +1,7 @@
 #!/bin/bash
-SERVICE_NAME="SoapProviderService"
 
+NAME=$1
+PROVIDER_NAME=provider-$NAME
 cat << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <jbi:jbi version="1.0"
@@ -9,19 +10,19 @@ cat << EOF
 
 	<jbi:service-assembly>
 		<jbi:identification>
-			<jbi:name>sa-SOAP-$SERVICE_NAME-provide</jbi:name>
+			<jbi:name>sa-SOAP-$PROVIDER_NAME-provide</jbi:name>
 			<jbi:description></jbi:description>
 		</jbi:identification>
 
 		<!-- New service-unit -->
 		<jbi:service-unit>
 			<jbi:identification>
-				<jbi:name>su-SOAP-$SERVICE_NAME-provide</jbi:name>
+				<jbi:name>su-SOAP-$PROVIDER_NAME-provide</jbi:name>
 				<jbi:description></jbi:description>
 			</jbi:identification>
 
 			<jbi:target>
-				<jbi:artifacts-zip>su-SOAP-$SERVICE_NAME-provide.zip</jbi:artifacts-zip>
+				<jbi:artifacts-zip>su-SOAP-$PROVIDER_NAME-provide.zip</jbi:artifacts-zip>
 				<jbi:component-name>petals-bc-soap</jbi:component-name>
 			</jbi:target>
 		</jbi:service-unit>
