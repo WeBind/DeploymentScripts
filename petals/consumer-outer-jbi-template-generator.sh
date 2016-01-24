@@ -1,6 +1,6 @@
 #!/bin/bash
 NAME=$1
-PROVIDER_NAME="provider-"$NAME
+PROVIDER_NAME=provider-$NAME
 
 cat << EOF
 <?xml version="1.0" encoding="UTF-8"?>
