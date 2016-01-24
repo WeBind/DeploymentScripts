@@ -4,6 +4,7 @@ CONSUMER_FOLDER_PATH="/home/magicmicky/IdeaProjects/TestProducer1/out/artifacts/
 GLASSFISH_DEPLOYER_PATH="/opt/glassfish4/bin/asadmin";
 PROJECT_FOLDER="/home/magicmicky/IdeaProjects/TestProducer1/SoapJavaProducer/";
 TEMPLATE_GENERATOR="/opt/Plasson/petals/producers/SoapProvider_template.sh";
+FOLLOW_UP="/opt/Plasson/petals/petals/main.sh"
 
 JAVA_FOLDER="src/main/java/example/";
 INSTALLED_FOLDER="target/SoapJavaProducer";
@@ -31,5 +32,7 @@ echo $exchange >> ./producer-$id/number.txt
 echo $broadcast >> ./producer-$id/number.txt
 echo $all >> ./producer-$id/number.txt
 ${GLASSFISH_DEPLOYER_PATH} deploy ./producer-$id
+
+${FOLLOW_UP} $id
 cd
 #rm -rf /tmp/webind
