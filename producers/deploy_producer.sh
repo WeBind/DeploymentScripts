@@ -6,7 +6,7 @@ TEMPLATE_GENERATOR="/opt/Plasson/petals/producers/SoapProvider_template.sh";
 
 JAVA_FOLDER="src/main/java/example/";
 INSTALLED_FOLDER="target/SoapJavaProducer";
-FOLLOW_UP = "/opt/Plasson/petals/petals/main.sh"
+FOLLOW_UP="/opt/Plasson/petals/petals/main.sh"
 
 id=$1
 exchange=$2
