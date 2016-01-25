@@ -18,5 +18,5 @@ rm -rf /tmp/webind/*
 rm -rf /tmp/webind-petals/
 
 
-*${GLASSFISH_ASADMIN} restart-domain
+${GLASSFISH_ASADMIN} restart-domain
 
