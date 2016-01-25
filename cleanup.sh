@@ -11,7 +11,7 @@ REMOTE_HOST_FOLDER="/root/petals-esb-enterprise-edition-5.0.0-SNAPSHOT/esb/petal
 for cur in "$@"
 do
   ${GLASSFISH_ASADMIN} undeploy --user admin --passwordfile ~/.passowrd_file $BASE$cur
-  ssh root@$REMOTE_HOST 'rm -rf $REMOTE_HOST_FOLDER/sa-SOAP-$BASE$cur-*'
+  ssh root@$REMOTE_HOST 'rm -rf $REMOTE_HOST_FOLDER/sa-SOAP-provider-$cur-*'
 done
 rm -rf $DOMAIN_PATH
 rm -rf /tmp/webind/*
