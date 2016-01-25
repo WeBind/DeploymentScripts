@@ -15,13 +15,13 @@ import java.util.logging.Logger;
 
 @WebService(serviceName = "provider-$NAME")
 public class SoapProvider$NAME {
-    WebServiceContext context;
+    ThreadLocal<WebServiceContext> WSS = new ThreadLocal<WebServiceContext>();
 
     @Resource
     public void setContext(WebServiceContext context) {
-        this.context = context;
+        WSS.set(context);
     }
-
+    
     Logger lg = java.util.logging.Logger.getLogger("SoapProducer");
 
     /**
@@ -80,7 +80,7 @@ public class SoapProvider$NAME {
     }
 
     private ServletContext retrieveSC() {
-        MessageContext msgCtx = context.getMessageContext();
+        MessageContext msgCtx = WSS.get().getMessageContext();
         return (ServletContext)
                 msgCtx.get(MessageContext.SERVLET_CONTEXT);
     }
