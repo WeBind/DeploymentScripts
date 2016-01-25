@@ -15,8 +15,13 @@ import java.util.logging.Logger;
 
 @WebService(serviceName = "provider-$NAME")
 public class SoapProvider$NAME {
+    WebServiceContext context;
+
     @Resource
-    private WebServiceContext svcCtx;
+    public void setContext(WebServiceContext context) {
+        this.context = context;
+    }
+
     Logger lg = java.util.logging.Logger.getLogger("SoapProducer");
 
     /**
