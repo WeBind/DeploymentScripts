@@ -1,8 +1,8 @@
 #!/bin/bash
-PRODUCER_INNER_JBI_TEMPLATE_GENERATOR="/opt/Plasson/petals/producer-inner-jbi-template-generator.sh"
-PRODUCER_OUTER_JBI_TEMPLATE_GENERATOR="/opt/Plasson/petals/producer-outer-jbi-template-generator.sh"
-CONSUMER_INNER_JBI_TEMPLATE_GENERATOR="/opt/Plasson/petals/consumer-inner-jbi-template-generator.sh"
-CONSUMER_OUTER_JBI_TEMPLATE_GENERATOR="/opt/Plasson/petals/consumer-outer-jbi-template-generator.sh"
+PRODUCER_INNER_JBI_TEMPLATE_GENERATOR="/opt/Plasson/petals/petals/producer-inner-jbi-template-generator.sh"
+PRODUCER_OUTER_JBI_TEMPLATE_GENERATOR="/opt/Plasson/petals/petals/producer-outer-jbi-template-generator.sh"
+CONSUMER_INNER_JBI_TEMPLATE_GENERATOR="/opt/Plasson/petals/petals/consumer-inner-jbi-template-generator.sh"
+CONSUMER_OUTER_JBI_TEMPLATE_GENERATOR="/opt/Plasson/petals/petals/consumer-outer-jbi-template-generator.sh"
 HOST="127.0.0.1"
 REMOTE_HOST="192.168.0.105"
 REMOTE_HOST_FOLDER="/root/petals-esb-enterprise-edition-5.0.0-SNAPSHOT/esb/petals-esb-default-zip-5.0.1-SNAPSHOT/data/install/"
@@ -14,7 +14,7 @@ mkdir /tmp/webind-petals/$PROD_NAME
 cd /tmp/webind-petals/$PROD_NAME
 
 #produce
-ROOT=su-SOAP-SoapProviderService-provide
+ROOT=su-SOAP-$PROV_NAME-provide
 mkdir $ROOT
 mkdir $ROOT/META-INF
 
@@ -24,7 +24,7 @@ wget -O $ROOT/SoapProviderService.wsdl http://$HOST:8080/$PROD_NAME/$PROV_NAME?w
 wget -O $ROOT/1.xsd http://$HOST:8080/$PROD_NAME/$PROV_NAME??xsd=1
 
 #outer zip
-ROOT2=sa-SOAP-SoapProviderService-provide
+ROOT2=sa-SOAP-$PROV_NAME-provide
 mkdir $ROOT2/
 mkdir $ROOT2/META-INF
 ${PRODUCER_OUTER_JBI_TEMPLATE_GENERATOR} $NAME > $ROOT2/META-INF/jbi.xml
@@ -42,13 +42,13 @@ mv $ROOT2/$ROOT2.zip .
 scp $ROOT2/$ROOT2.zip root@$REMOTE_HOST:$REMOTE_HOST_FOLDER
 
 #consume
-ROOT=su-SOAP-SoapProviderService-consume
+ROOT=su-SOAP-$PROV_NAME-consume
 mkdir $ROOT
 mkdir $ROOT/META-INF
 ${CONSUMER_INNER_JBI_TEMPLATE_GENERATOR} $NAME > $ROOT/META-INF/jbi.xml
 
 #outer zip
-ROOT2=sa-SOAP-SoapProviderService-consume
+ROOT2=sa-SOAP-$PROV_NAME-consume
 mkdir $ROOT2
 mkdir $ROOT2/META-INF
 ${CONSUMER_OUTER_JBI_TEMPLATE_GENERATOR} $NAME > $ROOT2/META-INF/jbi.xml
