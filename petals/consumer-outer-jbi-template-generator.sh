@@ -17,19 +17,19 @@ cat << EOF
 
 	<jbi:service-assembly>
 		<jbi:identification>
-			<jbi:name>sa-SOAP-$INTERFACE_SOAP-consume</jbi:name>
+			<jbi:name>sa-SOAP-$PROVIDER_SOAP-consume</jbi:name>
 			<jbi:description></jbi:description>
 		</jbi:identification>
 
 		<!-- New service-unit -->
 		<jbi:service-unit>
 			<jbi:identification>
-				<jbi:name>su-SOAP-$INTERFACE_SOAP-consume</jbi:name>
+				<jbi:name>su-SOAP-$PROVIDER_SOAP-consume</jbi:name>
 				<jbi:description></jbi:description>
 			</jbi:identification>
 
 			<jbi:target>
-				<jbi:artifacts-zip>su-SOAP-$INTERFACE_SOAP-consume.zip</jbi:artifacts-zip>
+				<jbi:artifacts-zip>su-SOAP-$PROVIDER_SOAP-consume.zip</jbi:artifacts-zip>
 				<jbi:component-name>petals-bc-soap</jbi:component-name>
 			</jbi:target>
 		</jbi:service-unit>
