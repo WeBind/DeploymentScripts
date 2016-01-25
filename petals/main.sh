@@ -39,7 +39,7 @@ pushd $ROOT2
 zip -r $ROOT2.zip .
 popd
 mv $ROOT2/$ROOT2.zip .
-scp $ROOT2/$ROOT2.zip root@$REMOTE_HOST:$REMOTE_HOST_FOLDER
+scp $ROOT2.zip root@$REMOTE_HOST:$REMOTE_HOST_FOLDER
 
 #consume
 ROOT=su-SOAP-$PROV_NAME-consume
@@ -63,4 +63,4 @@ pushd $ROOT2
 zip -r $ROOT2.zip .
 popd
 mv $ROOT2/$ROOT2.zip .
-scp $ROOT2/$ROOT2.zip root@$REMOTE_HOST:$REMOTE_HOST_FOLDER
+scp $ROOT2.zip root@$REMOTE_HOST:$REMOTE_HOST_FOLDER
