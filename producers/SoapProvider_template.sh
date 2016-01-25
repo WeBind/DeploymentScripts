@@ -2,7 +2,6 @@
 NAME=$1
 
 cat << EOF
-
 package example;
 
 import javax.annotation.Resource;
@@ -16,6 +15,7 @@ import javax.xml.ws.handler.MessageContext;
 public class SoapProvider$NAME {
     @Resource
     private WebServiceContext svcCtx;
+    Logger lg = java.util.logging.Logger.getLogger("SoapProducer");
 
     /**
      * Run the service, according to the configuration
@@ -23,7 +23,9 @@ public class SoapProvider$NAME {
     @WebMethod()
     public byte[] doStuff() throws InterruptedException {
         ServletContext ctx = retrieveSC();
-        System.out.println("Doing stuff - delay:" + ctx.getAttribute(Config.CONFIG_DELAY));
+        String number = (String) ctx.getAttribute(Config.NUMBER);
+
+        lg.log(Level.INFO, "[" + number + "] Doing stuff - delay:" + ctx.getAttribute(Config.CONFIG_DELAY));
         byte[] mess;
         long time2,
             time = System.currentTimeMillis();
@@ -36,8 +38,9 @@ public class SoapProvider$NAME {
         mess = generateMessage(messageSize);
 
         time2 = System.currentTimeMillis();
-
-        Thread.sleep(delay - (time2 - time));
+        long sleepingtime = delay - (time2 - time);
+        lg.log(Level.INFO, "[" + number + "] Sleeping " + sleepingtime);
+        Thread.sleep(Math.max(0, sleepingtime));
 
         return mess;
     }
