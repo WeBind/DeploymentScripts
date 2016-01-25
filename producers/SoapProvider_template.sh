@@ -80,7 +80,7 @@ public class SoapProvider$NAME {
     }
 
     private ServletContext retrieveSC() {
-        MessageContext msgCtx = svcCtx.getMessageContext();
+        MessageContext msgCtx = context.getMessageContext();
         return (ServletContext)
                 msgCtx.get(MessageContext.SERVLET_CONTEXT);
     }
