@@ -10,6 +10,8 @@ import javax.jws.WebService;
 import javax.servlet.ServletContext;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebService(serviceName = "provider-$NAME")
 public class SoapProvider$NAME {
