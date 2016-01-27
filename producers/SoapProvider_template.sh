@@ -18,6 +18,7 @@ public class SoapProvider$NAME {
     ThreadLocal<WebServiceContext> WSS = new ThreadLocal<WebServiceContext>();
 
     @Resource
+    @WebMethod(exclude = true)
     public void setContext(WebServiceContext context) {
         WSS.set(context);
     }
