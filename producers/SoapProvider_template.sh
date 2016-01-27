@@ -15,22 +15,32 @@ import java.util.logging.Logger;
 
 @WebService(serviceName = "provider-$NAME")
 public class SoapProvider$NAME {
+    Logger lg = java.util.logging.Logger.getLogger("SoapProducer");
+
     private static ThreadLocal<WebServiceContext> WSS = new ThreadLocal<WebServiceContext>();
 
     @WebMethod(exclude = true)
     @Resource
     public void setContext(WebServiceContext context) {
+        String n = "Not null";
+        if(context == null) n = "context null";
+        if(WSS==null) n = "wss null";
+        lg.log(Level.INFO, "Updating WSS context " + n);
         WSS.set(context);
     }
-
-    Logger lg = java.util.logging.Logger.getLogger("SoapProducer");
 
     /**
      * Run the service, according to the configuration
      */
     @WebMethod()
     public byte[] doStuff() throws InterruptedException {
-        MessageContext msgCtx = WSS.get().getMessageContext();
+        lg.log(Level.INFO, "WSS ? " + (WSS == null));
+        WebServiceContext wsc = WSS.get();
+        lg.log(Level.INFO, "wsc ? " + (wsc == null));
+
+        MessageContext msgCtx = wsc.getMessageContext();
+        lg.log(Level.INFO, "msgCtx ? " + (msgCtx == null));
+
         ServletContext ctx = (ServletContext) msgCtx.get(MessageContext.SERVLET_CONTEXT);
 
         String number = (String) ctx.getAttribute(Config.NUMBER);
@@ -82,5 +92,6 @@ public class SoapProvider$NAME {
         }
         return mess;
     }
+
 }
 EOF
