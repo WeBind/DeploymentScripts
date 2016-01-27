@@ -72,7 +72,7 @@ public class SoapProvider$NAME {
      */
     @WebMethod()
     public String configure(int messageSize, int delay) {
-        MessageContext msgCtx = WSC.get().getMessageContext();
+        MessageContext msgCtx = WSC.getMessageContext();
         ServletContext ctx = (ServletContext) msgCtx.get(MessageContext.SERVLET_CONTEXT);
         ctx.setAttribute(Config.CONFIG_DELAY, delay);
         ctx.setAttribute(Config.CONFIG_MSG_SIZE, messageSize);
