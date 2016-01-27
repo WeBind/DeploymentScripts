@@ -17,16 +17,15 @@ import java.util.logging.Logger;
 public class SoapProvider$NAME {
     Logger lg = java.util.logging.Logger.getLogger("SoapProducer");
 
-    private static ThreadLocal<WebServiceContext> WSS = new ThreadLocal<WebServiceContext>();
+    private static WebServiceContext WSC;
 
     @WebMethod(exclude = true)
     @Resource
     public void setContext(WebServiceContext context) {
         String n = "Not null";
         if(context == null) n = "context null";
-        if(WSS==null) n = "wss null";
         lg.log(Level.INFO, "Updating WSS context " + n);
-        WSS.set(context);
+        WSC = context;
     }
 
     /**
@@ -34,8 +33,7 @@ public class SoapProvider$NAME {
      */
     @WebMethod()
     public byte[] doStuff() throws InterruptedException {
-        lg.log(Level.INFO, "WSS ? " + (WSS == null));
-        WebServiceContext wsc = WSS.get();
+        WebServiceContext wsc = WSC;
         lg.log(Level.INFO, "wsc ? " + (wsc == null));
 
         MessageContext msgCtx = wsc.getMessageContext();

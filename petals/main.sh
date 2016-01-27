@@ -21,7 +21,7 @@ mkdir $ROOT/META-INF
 #Creation du inner zip
 ${PRODUCER_INNER_JBI_TEMPLATE_GENERATOR} $NAME $HOST > $ROOT/META-INF/jbi.xml
 wget -O $ROOT/$PROV_NAME.wsdl http://$HOST:8080/$PROD_NAME/$PROV_NAME?wsdl
-wget -O $ROOT/1.xsd http://$HOST:8080/$PROD_NAME/$PROV_NAME??xsd=1
+wget -O $ROOT/1.xsd http://$HOST:8080/$PROD_NAME/$PROV_NAME?xsd=1
 
 #outer zip
 ROOT2=sa-SOAP-$PROV_NAME-provide
