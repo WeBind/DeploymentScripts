@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 @WebService(serviceName = "provider-$NAME")
 public class SoapProvider$NAME {
-    ThreadLocal<WebServiceContext> WSS = new ThreadLocal<WebServiceContext>();
+    private static ThreadLocal<WebServiceContext> WSS = new ThreadLocal<WebServiceContext>();
 
     @WebMethod(exclude = true)
     @Resource
