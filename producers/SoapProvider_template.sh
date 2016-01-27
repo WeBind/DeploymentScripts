@@ -18,7 +18,6 @@ public class SoapProvider$NAME {
     ThreadLocal<WebServiceContext> WSS = new ThreadLocal<WebServiceContext>();
 
     @Resource
-    @WebMethod(exclude=true)
     public void setContext(WebServiceContext context) {
         WSS.set(context);
     }
@@ -30,7 +29,9 @@ public class SoapProvider$NAME {
      */
     @WebMethod()
     public byte[] doStuff() throws InterruptedException {
-        ServletContext ctx = retrieveSC();
+        MessageContext msgCtx = WSS.get().getMessageContext();
+        ServletContext ctx = (ServletContext) msgCtx.get(MessageContext.SERVLET_CONTEXT);
+
         String number = (String) ctx.getAttribute(Config.NUMBER);
 
         lg.log(Level.INFO, "[" + number + "] Doing stuff - delay:" + ctx.getAttribute(Config.CONFIG_DELAY));
@@ -62,7 +63,8 @@ public class SoapProvider$NAME {
      */
     @WebMethod()
     public String configure(int messageSize, int delay) {
-        ServletContext ctx = retrieveSC();
+        MessageContext msgCtx = WSS.get().getMessageContext();
+        ServletContext ctx = (ServletContext) msgCtx.get(MessageContext.SERVLET_CONTEXT);
         ctx.setAttribute(Config.CONFIG_DELAY, delay);
         ctx.setAttribute(Config.CONFIG_MSG_SIZE, messageSize);
 
@@ -78,12 +80,6 @@ public class SoapProvider$NAME {
             mess[i] =(byte) ('a' +(i%26));
         }
         return mess;
-    }
-
-    private ServletContext retrieveSC() {
-        MessageContext msgCtx = WSS.get().getMessageContext();
-        return (ServletContext)
-                msgCtx.get(MessageContext.SERVLET_CONTEXT);
     }
 }
 EOF
